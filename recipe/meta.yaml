@@ -1,19 +1,20 @@
-{% set version = "1.4.4" %}
+{% set name = "autopep8" %}
+{% set version = "1.5.3" %}
 
 package:
-  name: autopep8
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/a/autopep8/autopep8-{{ version }}.tar.gz
-  sha256: 4d8eec30cc81bc5617dbf1218201d770dc35629363547f17577c61683ccfb3ee
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 60fd8c4341bab59963dafd5d2a566e94f547e660b9b396f772afe67d8481dbf0
 
 build:
+  number: 0
   noarch: python
   entry_points:
     - autopep8 = autopep8:main
-  number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -21,12 +22,17 @@ requirements:
     - pip
   run:
     - python
-    - pycodestyle >=2.3
+    - pycodestyle >=2.6
+    - toml
 
 test:
+  imports:
+    - autopep8
   commands:
+    - pip check
     - autopep8 --help
-    - autopep8 --version
+  requires:
+    - pip
 
 about:
   home: https://github.com/hhatto/autopep8
