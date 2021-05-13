@@ -22,7 +22,7 @@ requirements:
     - pip
   run:
     - python
-    - pycodestyle >=2.6
+    - pycodestyle >=2.7.0
     - toml
 
 test:
