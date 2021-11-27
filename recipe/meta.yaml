@@ -41,6 +41,7 @@ about:
   license_family: MIT
   summary: A tool that automatically formats Python code to conform to the PEP 8 style guide
   dev_url: https://github.com/hhatto/autopep8
+  doc_url: https://github.com/hhatto/autopep8/blob/master/README.rst
 
 extra:
   recipe-maintainers:
