@@ -11,7 +11,7 @@ source:
 
 build:
   skip: True  # [py<37]
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - autopep8 = autopep8:main
