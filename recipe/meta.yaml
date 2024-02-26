@@ -1,5 +1,5 @@
 {% set name = "autopep8" %}
-{% set version = "1.6.0" %}
+{% set version = "2.0.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,15 +7,14 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 44f0932855039d2c15c4510d6df665e4730f2b8582704fa48f9c55bd3e17d979
+  sha256: 2913064abd97b3419d1cc83ea71f042cb821f87e45b9c88cad5ad3c4ea87fe0c
 
 build:
-  skip: True  # [py<37]
-  number: 1
+  number: 0
   noarch: python
   entry_points:
     - autopep8 = autopep8:main
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install --no-deps --no-build-isolation . -vv
 
 requirements:
   host:
@@ -25,8 +24,8 @@ requirements:
     - setuptools
   run:
     - python >=3.6
-    - pycodestyle >=2.8
-    - toml
+    - pycodestyle >=2.10.0
+    - tomli  # [py<311]
 
 test:
   imports:
@@ -36,7 +35,6 @@ test:
     - autopep8 --help
   requires:
     - pip
-    - python <3.10
 
 about:
   home: https://github.com/hhatto/autopep8
