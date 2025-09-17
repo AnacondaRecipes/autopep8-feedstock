@@ -1,30 +1,29 @@
 {% set name = "autopep8" %}
-{% set version = "2.0.4" %}
+{% set version = "2.3.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2913064abd97b3419d1cc83ea71f042cb821f87e45b9c88cad5ad3c4ea87fe0c
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 89440a4f969197b69a995e4ce0661b031f455a9f776d2c5ba3dbd83466931758
 
 build:
   number: 0
-  noarch: python
   entry_points:
     - autopep8 = autopep8:main
   script: {{ PYTHON }} -m pip install --no-deps --no-build-isolation . -vv
+  skip: true  # [py<39]
 
 requirements:
   host:
     - python
     - pip
-    - wheel
     - setuptools
   run:
-    - python >=3.6
-    - pycodestyle >=2.10.0
+    - python
+    - pycodestyle >=2.12.0
     - tomli  # [py<311]
 
 test:
@@ -44,6 +43,10 @@ about:
   summary: A tool that automatically formats Python code to conform to the PEP 8 style guide
   dev_url: https://github.com/hhatto/autopep8
   doc_url: https://github.com/hhatto/autopep8/blob/master/README.rst
+  description: |
+    autopep8 automatically formats Python code to conform to the PEP 8 style guide.
+    It uses the pycodestyle utility to determine what parts of the code needs to be formatted.
+    autopep8 is capable of fixing most of the formatting issues that can be reported by pycodestyle.
 
 extra:
   recipe-maintainers:
