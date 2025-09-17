@@ -11,7 +11,6 @@ source:
 
 build:
   number: 0
-  noarch: python
   entry_points:
     - autopep8 = autopep8:main
   script: {{ PYTHON }} -m pip install --no-deps --no-build-isolation . -vv
@@ -44,6 +43,10 @@ about:
   summary: A tool that automatically formats Python code to conform to the PEP 8 style guide
   dev_url: https://github.com/hhatto/autopep8
   doc_url: https://github.com/hhatto/autopep8/blob/master/README.rst
+  description: |
+    autopep8 automatically formats Python code to conform to the PEP 8 style guide.
+    It uses the pycodestyle utility to determine what parts of the code needs to be formatted.
+    autopep8 is capable of fixing most of the formatting issues that can be reported by pycodestyle.
 
 extra:
   recipe-maintainers:
